@@ -1,14 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
 import { ChakraProvider } from "@chakra-ui/react"
-import { Box, Flex, Button, ButtonGroup, Heading, Stack, VStack,
-  HStack, StackDivider } from "@chakra-ui/react";
+import { Box, Flex, Button,Heading, Stack, HStack } from "@chakra-ui/react";
 import { List, ListItem, ListIcon, OrderedList,
-    UnorderedList, Text } from "@chakra-ui/react"
-import { Center, Square, Circle } from "@chakra-ui/react"
-import { Spacer} from "@chakra-ui/react"
+    UnorderedList, Text, Link } from "@chakra-ui/react"
 import DarkModeToggle from './DarkModeToggle.js'
-import { ColorModeScript } from "@chakra-ui/react"
+import { ExternalLinkIcon } from '@chakra-ui/icons'
 
 function App() {
   return (
@@ -19,36 +16,48 @@ function App() {
       <Box textAlign="right" bg="teal.800" px={100} py={3} color='white'>
         <DarkModeToggle/>
       </Box>
-      <HStack spacing="20px" m={0,3} >
-      <Flex textAlign="left" w="33%"  color='gray.400' borderWidth="1px" borderColor="gray.400" borderRadius="md">
-        <UnorderedList pl="20px" py="10px">
-        <Heading fontSize="3xl"> H1 </Heading>
-          <ListItem>Lorem ipsum dolor sit amet</ListItem>
-          <ListItem>Consectetur adipiscing elit</ListItem>
-          <ListItem>Integer molestie lorem at massa</ListItem>
-          <ListItem>Facilisis in pretium nisl aliquet</ListItem>
-        </UnorderedList>
-      </Flex>
-        <Flex textAlign="left" w="33%"  color='gray.400' borderWidth="1px" borderColor="gray.400" borderRadius="md">
-        <UnorderedList pl="20px" py="10px">
-        <Heading fontSize="3xl"> H2 </Heading>
-          <ListItem>Lorem ipsum dolor sit amet</ListItem>
-          <ListItem>Consectetur adipiscing elit</ListItem>
-          <ListItem>Integer molestie lorem at massa</ListItem>
-          <ListItem>Facilisis in pretium nisl aliquet</ListItem>
-        </UnorderedList>
+      <HStack justify="center" spacing="20px" m={0,3} >
+        <Flex textAlign="left" w="33%" color='gray.400' pr={10} borderWidth="1px" borderColor="gray.400" borderRadius="md">
+          <UnorderedList pl="20px" py="10px">
+            <Heading fontSize="3xl" p={2}> COVID at a Glance </Heading>
+              <ListItem><Link href="https://informationisbeautiful.net/visualizations/covid-19-coronavirus-infographic-datapack/" isExternal>
+                Data Dashboard <ExternalLinkIcon mx="2px" />
+              </Link></ListItem>
+              <ListItem><Link href="https://informationisbeautiful.net/visualizations/covid-19-coronavirus-infographic-datapack/" isExternal>
+                Riskiest Activities <ExternalLinkIcon mx="2px" />
+              </Link></ListItem>
+              <ListItem>Integer molestie lorem at massa</ListItem>
+              <ListItem>Facilisis in pretium nisl aliquet</ListItem>
+          </UnorderedList>
         </Flex>
-        <Flex textAlign="left" w="33%"  color='gray.400' borderWidth="1px" borderColor="gray.400" borderRadius="md">
-        <UnorderedList pl="20px" py="10px">
-        <Heading fontSize="3xl"> H3 </Heading>
-          <ListItem>Lorem ipsum dolor sit amet</ListItem>
-          <ListItem>Consectetur adipiscing elit</ListItem>
-          <ListItem>Integer molestie lorem at massa</ListItem>
-          <ListItem>Facilisis in pretium nisl aliquet</ListItem>
-        </UnorderedList>
+        <Flex textAlign="left" w="33%" color='gray.400' pr={10} borderWidth="1px" borderColor="gray.400" borderRadius="md">
+          <UnorderedList pl="20px" py="10px">
+            <Heading fontSize="3xl" p={2}> H1 </Heading>
+              <ListItem><Link href="https://informationisbeautiful.net/visualizations/covid-19-coronavirus-infographic-datapack/" isExternal>
+                COVID Data Dashboard <ExternalLinkIcon mx="2px" />
+              </Link></ListItem>
+              <ListItem><Link href="https://informationisbeautiful.net/visualizations/covid-19-coronavirus-infographic-datapack/" isExternal>
+                Riskiest Activities <ExternalLinkIcon mx="2px" />
+              </Link></ListItem>
+              <ListItem>Integer molestie lorem at massa</ListItem>
+              <ListItem>Facilisis in pretium nisl aliquet</ListItem>
+          </UnorderedList>
         </Flex>
-
+        <Flex textAlign="left" w="33%" color='gray.400' pr={10} borderWidth="1px" borderColor="gray.400" borderRadius="md">
+          <UnorderedList pl="20px" py="10px">
+            <Heading fontSize="3xl" p={2}> H1 </Heading>
+              <ListItem><Link href="https://informationisbeautiful.net/visualizations/covid-19-coronavirus-infographic-datapack/" isExternal>
+                COVID Data Dashboard <ExternalLinkIcon mx="2px" />
+              </Link></ListItem>
+              <ListItem><Link href="https://informationisbeautiful.net/visualizations/covid-19-coronavirus-infographic-datapack/" isExternal>
+                Riskiest Activities <ExternalLinkIcon mx="2px" />
+              </Link></ListItem>
+              <ListItem>Integer molestie lorem at massa</ListItem>
+              <ListItem>Facilisis in pretium nisl aliquet</ListItem>
+          </UnorderedList>
+        </Flex>
       </HStack>
+
 
     </div>
   );

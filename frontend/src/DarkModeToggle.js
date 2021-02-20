@@ -7,7 +7,7 @@ function DarkModeToggle() {
   return (
     <header>
       <Button onClick={toggleColorMode} bg="teal.900">
-      <MoonIcon pr={1}/> Toggle {colorMode === "light" ? "Dark" : "Light"}
+       <MoonIcon pr={1}/> Toggle {colorMode === "light" ? "Dark" : "Light"}
       </Button>
     </header>
   )
