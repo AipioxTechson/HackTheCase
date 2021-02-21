@@ -7,8 +7,10 @@ import csv
 import os
 from google.cloud import dialogflow
 from google.protobuf.json_format import MessageToJson
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
+cors = CORS(app)
 load_dotenv()
 
 PGHOST = os.getenv("PGHOST")
@@ -91,15 +93,16 @@ def detect_intent(text,session_id):
             )
         )
     if response.query_result.all_required_params_present:
-        if response.query_result.intent.display_name == 'Default Fallback Intent':
-            return (False,response.query_result.fulfillment_text,session_id,)
-
-        return (True,
+        display_name = response.query_result.intent.display_name
+        if display_name== 'cases_intent' or display_name == 'facilities_intent':
+            return (True,
             response.query_result.parameters["location"]["street-address"],
             response.query_result.parameters["geo-city"],
             response.query_result.intent.display_name,
             session_id,
             ) #all required, street, city, intent, session_id
+        return (False,response.query_result.fulfillment_text,session_id,)
+
     return (False,response.query_result.fulfillment_text,session_id,)#False, fulfillment_messsage, session_id
 
 #5. should be able to parse for the nearest location
@@ -132,7 +135,8 @@ CASES = 5
 LATITUDE = 6
 LONGITUDE = 7
 
-@app.route("/bot/request",methods = ['GET'])
+@app.route("/bot/request",methods = ['POST'])
+@cross_origin()
 def request_chat():
     text = request.get_json().get('text')
     session_id = request.get_json().get('session_id')
@@ -156,7 +160,8 @@ def request_chat():
     return { "content": result[1], "type": "NEEDS_MORE", "session_id": result[2]}, 200
 
 #3. should serve a get response
-@app.route("/location/request",methods = ['GET'])
+@app.route("/location/request",methods = ['POST'])
+@cross_origin()
 def request_data():
     location = request.get_json().get('location')
     if location == None:
