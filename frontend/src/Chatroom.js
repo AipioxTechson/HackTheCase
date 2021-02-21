@@ -16,30 +16,29 @@ function Chatroom() {
       text: formText,
       ...(sessionRef.current ? {session_id: sessionRef.current} :{})
     }
-    // fetch("http://localhost:5000/bot/request", {
-    //   method: "POST",
-    //   headers: {'Content-Type': 'application/json'},
-    //   body: JSON.stringify(data)
-    // }).then(async response => {
-    //   if (response.ok){
-    //     const result = await response.json()
-    //     setMessages((oldMessages) => [...oldMessages,{type:'bot', message: result.content}])
-    //     if (result.type === 'NEEDS_MORE'){
-    //       sessionRef.current = result.session_id
-    //     }else {
-    //       sessionRef.current = null
-    //     }
-    //   }else {
-    //     setMessages((oldMessages) => [...oldMessages,{type:'bot', message: 'I could not understand'}])
-    //     sessionRef.current = null
-    //   }
-  // })
-    setMessages((oldMessages) => [...oldMessages,{type:'bot', message: "Hi there"}])
+     fetch("http://localhost:5000/bot/request", {
+       method: "POST",
+       headers: {'Content-Type': 'application/json'},
+       body: JSON.stringify(data)
+     }).then(async response => {
+       if (response.ok){
+         const result = await response.json()
+         setMessages((oldMessages) => [...oldMessages,{type:'bot', message: result.content}])
+         if (result.type === 'NEEDS_MORE'){
+           sessionRef.current = result.session_id
+         }else {
+           sessionRef.current = null
+         }
+       }else {
+         setMessages((oldMessages) => [...oldMessages,{type:'bot', message: 'I could not understand'}])
+         sessionRef.current = null
+       }
+    })
   }
 
   const handleChange = (e) => setFormText(e.target.value)
 return (
-    <Flex className="chatWindow" my={3} m="auto" w="32%" color='gray.400' px={5}
+    <Flex className="chatWindow" my={3} m="auto" w="60%" color='gray.400' px={5}
     borderWidth="1px" borderColor="gray.400" borderRadius="md" h="auto" flexDirection='column'>
         <ul className="chat" id="chatList" list-style-type="none" >
           {messages.map(({type, message}, index) => (

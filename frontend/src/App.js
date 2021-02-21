@@ -19,8 +19,8 @@ function App() {
       <Box textAlign="right"mb={3} bg="teal.800" px={100} py={3} color='white'>
         <DarkModeToggle/>
       </Box>
-      <Links/>
       <Chatroom/>
+      <Links/>
 
 
 
